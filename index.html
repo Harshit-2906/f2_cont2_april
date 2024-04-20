@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .counter {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2> Counter using HTML</h2>
+        <div class="counter" id="counter">0</div>
+        <div class="error" id="error">Cannot decrement below 0</div>
+        <button onclick="increment()">Increment</button>
+        <button onclick="decrement()">Decrement</button>
+        <button oncl
+        ick="clearCounter()">Clear</button>
+    </div>
+
+    <script>
+        let count = 0;
+        const counterDisplay = document.getElementById('counter');
+        const errorDisplay = document.getElementById('error');
+
+        function increment() {
+            count++;
+            counterDisplay.textContent = count;
+            updateButtonVisibility();
+            hideError();
+        }
+
+        function decrement() {
+            if (count > 0) {
+                count--;
+                counterDisplay.textContent = count;
+                updateButtonVisibility();
+                hideError();
+            } else {
+                showError();
+            }
+        }
+
+        function clearCounter() {
+            count = 0;
+            counterDisplay.textContent = count;
+            updateButtonVisibility();
+            hideError();
+        }
+
+        function updateButtonVisibility() {
+            const clearButton = document.querySelector('button:nth-of-type(3)');
+            clearButton.style.display = count > 0 ? 'block' : 'none';
+        }
+
+        function showError() {
+            errorDisplay.style.display = 'block';
+        }
+
+        function hideError() {
+            errorDisplay.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
